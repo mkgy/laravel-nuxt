@@ -1,0 +1,67 @@
+## quelle
+https://github.com/mkgy/laravel-nuxt
+
+## Laravel settings
+sudo usermod -a -G www-data `whoami`
+Give the right permissions to /var/www
+
+
+sudo chown root:root /var/www
+sudo chmod 755 /var/www/
+Give these permissions to your project
+
+sudo chown -R www-data:www-data /var/www/<project>
+sudo chmod -R 774 /var/www/<project>
+
+sudo chown -R www-data:www-data /tmp/nitro/
+sudo chmod -R 774  /tmp/nitro/
+
+sudo chown -R www-data:www-data /backend/storage/logs/laravel.log
+sudo chmod -R 774  /backend/storage/logs/laravel.log
+
+
+sudo update-alternatives --config php
+sudo update-alternatives --config php 
+
+composer install && yarn install
+cp .env.example .env && php artisan key:generate && php artisan storage:link
+php artisan migrate && php artisan db:seed
+php artisan octane:install
+php artisan octane:start --watch --port=8000 --host=127.0.0.1
+npm run dev --host
+
+--> in vite
+"scripts": {
+  "dev": "vite --port 3000",
+  "build": "vite build",
+  "preview": "vite preview"
+}
+
+## update nuxt and laravel packages
+npx nuxi upgrade
+composer update
+
+## kill port on WLS2 Ubuntu
+sudo kill -9 $(sudo lsof -t -i:3000)
+fuser -k 3000/tcp
+
+## kill port Windows
+netstat -ano | findstr :3000
+
+taskkill /PID <PID> /F
+taskkill /PID 5344 /F
+
+
+## Admin
+user: admin@admin.com
+pwd: password
+
+
+## about Nuxt
+Architecture
+Nuxt is composed of different core packages:
+Core Engine: nuxt
+Bundlers: @nuxt/vite-builder and @nuxt/webpack-builder
+Command line interface: nuxi
+Server engine: nitro
+Development kit: @nuxt/kit
